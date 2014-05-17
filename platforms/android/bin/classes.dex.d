@@ -1,0 +1,23 @@
+/Users/richardflint/Development/hitMe/sandbox/phonegap-nfc-reader/platforms/android/bin/classes.dex : \
+/Users/richardflint/Development/hitMe/sandbox/phonegap-nfc-reader/platforms/android/bin/classes/com/chariotsolutions/nfc/plugin/NfcPlugin$1.class \
+/Users/richardflint/Development/hitMe/sandbox/phonegap-nfc-reader/platforms/android/bin/classes/com/chariotsolutions/nfc/plugin/NfcPlugin$2.class \
+/Users/richardflint/Development/hitMe/sandbox/phonegap-nfc-reader/platforms/android/bin/classes/com/chariotsolutions/nfc/plugin/NfcPlugin$3.class \
+/Users/richardflint/Development/hitMe/sandbox/phonegap-nfc-reader/platforms/android/bin/classes/com/chariotsolutions/nfc/plugin/NfcPlugin$4.class \
+/Users/richardflint/Development/hitMe/sandbox/phonegap-nfc-reader/platforms/android/bin/classes/com/chariotsolutions/nfc/plugin/NfcPlugin$5.class \
+/Users/richardflint/Development/hitMe/sandbox/phonegap-nfc-reader/platforms/android/bin/classes/com/chariotsolutions/nfc/plugin/NfcPlugin$6.class \
+/Users/richardflint/Development/hitMe/sandbox/phonegap-nfc-reader/platforms/android/bin/classes/com/chariotsolutions/nfc/plugin/NfcPlugin$7.class \
+/Users/richardflint/Development/hitMe/sandbox/phonegap-nfc-reader/platforms/android/bin/classes/com/chariotsolutions/nfc/plugin/NfcPlugin$8.class \
+/Users/richardflint/Development/hitMe/sandbox/phonegap-nfc-reader/platforms/android/bin/classes/com/chariotsolutions/nfc/plugin/NfcPlugin.class \
+/Users/richardflint/Development/hitMe/sandbox/phonegap-nfc-reader/platforms/android/bin/classes/com/chariotsolutions/nfc/plugin/Util.class \
+/Users/richardflint/Development/hitMe/sandbox/phonegap-nfc-reader/platforms/android/bin/classes/com/megster/nfc/reader/BuildConfig.class \
+/Users/richardflint/Development/hitMe/sandbox/phonegap-nfc-reader/platforms/android/bin/classes/com/megster/nfc/reader/NfcReader.class \
+/Users/richardflint/Development/hitMe/sandbox/phonegap-nfc-reader/platforms/android/bin/classes/com/megster/nfc/reader/R$attr.class \
+/Users/richardflint/Development/hitMe/sandbox/phonegap-nfc-reader/platforms/android/bin/classes/com/megster/nfc/reader/R$drawable.class \
+/Users/richardflint/Development/hitMe/sandbox/phonegap-nfc-reader/platforms/android/bin/classes/com/megster/nfc/reader/R$string.class \
+/Users/richardflint/Development/hitMe/sandbox/phonegap-nfc-reader/platforms/android/bin/classes/com/megster/nfc/reader/R$xml.class \
+/Users/richardflint/Development/hitMe/sandbox/phonegap-nfc-reader/platforms/android/bin/classes/com/megster/nfc/reader/R.class \
+/Users/richardflint/Development/hitMe/sandbox/phonegap-nfc-reader/platforms/android/bin/classes/org/apache/cordova/api/Dummy.class \
+/Users/richardflint/Development/hitMe/sandbox/phonegap-nfc-reader/platforms/android/bin/classes/org/apache/cordova/device/Device$1.class \
+/Users/richardflint/Development/hitMe/sandbox/phonegap-nfc-reader/platforms/android/bin/classes/org/apache/cordova/device/Device.class \
+/Users/richardflint/Development/hitMe/sandbox/phonegap-nfc-reader/platforms/android/bin/classes/org/apache/cordova/vibration/Vibration.class \
+/Users/richardflint/Development/hitMe/sandbox/phonegap-nfc-reader/platforms/android/bin/dexedLibs/cordova-3.1.0-1f09553e0f4e6eecd278e1b6e425a87b.jar \

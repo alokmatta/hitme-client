@@ -23,22 +23,27 @@ import java.util.TimeZone;
 import org.apache.cordova.CordovaWebView;
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
+import org.apache.cordova.LOG;
 import org.apache.cordova.CordovaInterface;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.provider.Settings;
+import android.telephony.TelephonyManager;
 
 public class Device extends CordovaPlugin {
     public static final String TAG = "Device";
 
-    public static String platform;                            // Device OS
-    public static String uuid;                                // Device UUID
+    public static String cordovaVersion = "dev";              // Cordova version
+    public static String platform = "Android";                  // Device OS
+    public static String uuid;                                  // Device UUID
 
-    private static final String ANDROID_PLATFORM = "Android";
-    private static final String AMAZON_PLATFORM = "amazon-fireos";
-    private static final String AMAZON_DEVICE = "Amazon";
+    BroadcastReceiver telephonyReceiver = null;
 
     /**
      * Constructor.
@@ -56,6 +61,7 @@ public class Device extends CordovaPlugin {
     public void initialize(CordovaInterface cordova, CordovaWebView webView) {
         super.initialize(cordova, webView);
         Device.uuid = getUuid();
+        this.initTelephonyReceiver();
     }
 
     /**
@@ -71,7 +77,8 @@ public class Device extends CordovaPlugin {
             JSONObject r = new JSONObject();
             r.put("uuid", Device.uuid);
             r.put("version", this.getOSVersion());
-            r.put("platform", this.getPlatform());
+            r.put("platform", Device.platform);
+            r.put("cordova", Device.cordovaVersion);
             r.put("model", this.getModel());
             callbackContext.success(r);
         }
@@ -81,23 +88,63 @@ public class Device extends CordovaPlugin {
         return true;
     }
 
+    /**
+     * Unregister receiver.
+     */
+    public void onDestroy() {
+        this.cordova.getActivity().unregisterReceiver(this.telephonyReceiver);
+    }
+
     //--------------------------------------------------------------------------
     // LOCAL METHODS
     //--------------------------------------------------------------------------
 
     /**
+     * Listen for telephony events: RINGING, OFFHOOK and IDLE
+     * Send these events to all plugins using
+     *      CordovaActivity.onMessage("telephone", "ringing" | "offhook" | "idle")
+     */
+    private void initTelephonyReceiver() {
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(TelephonyManager.ACTION_PHONE_STATE_CHANGED);
+        //final CordovaInterface mycordova = this.cordova;
+        this.telephonyReceiver = new BroadcastReceiver() {
+
+            @Override
+            public void onReceive(Context context, Intent intent) {
+
+                // If state has changed
+                if ((intent != null) && intent.getAction().equals(TelephonyManager.ACTION_PHONE_STATE_CHANGED)) {
+                    if (intent.hasExtra(TelephonyManager.EXTRA_STATE)) {
+                        String extraData = intent.getStringExtra(TelephonyManager.EXTRA_STATE);
+                        if (extraData.equals(TelephonyManager.EXTRA_STATE_RINGING)) {
+                            LOG.i(TAG, "Telephone RINGING");
+                            webView.postMessage("telephone", "ringing");
+                        }
+                        else if (extraData.equals(TelephonyManager.EXTRA_STATE_OFFHOOK)) {
+                            LOG.i(TAG, "Telephone OFFHOOK");
+                            webView.postMessage("telephone", "offhook");
+                        }
+                        else if (extraData.equals(TelephonyManager.EXTRA_STATE_IDLE)) {
+                            LOG.i(TAG, "Telephone IDLE");
+                            webView.postMessage("telephone", "idle");
+                        }
+                    }
+                }
+            }
+        };
+
+        // Register the receiver
+        this.cordova.getActivity().registerReceiver(this.telephonyReceiver, intentFilter);
+    }
+
+    /**
      * Get the OS name.
-     * 
+     *
      * @return
      */
     public String getPlatform() {
-        String platform;
-        if (isAmazonDevice()) {
-            platform = AMAZON_PLATFORM;
-        } else {
-            platform = ANDROID_PLATFORM;
-        }
-        return platform;
+        return Device.platform;
     }
 
     /**
@@ -108,6 +155,15 @@ public class Device extends CordovaPlugin {
     public String getUuid() {
         String uuid = Settings.Secure.getString(this.cordova.getActivity().getContentResolver(), android.provider.Settings.Secure.ANDROID_ID);
         return uuid;
+    }
+
+    /**
+     * Get the Cordova version.
+     *
+     * @return
+     */
+    public String getCordovaVersion() {
+        return Device.cordovaVersion;
     }
 
     public String getModel() {
@@ -139,18 +195,6 @@ public class Device extends CordovaPlugin {
     public String getTimeZoneID() {
         TimeZone tz = TimeZone.getDefault();
         return (tz.getID());
-    }
-
-    /**
-     * Function to check if the device is manufactured by Amazon
-     * 
-     * @return
-     */
-    public boolean isAmazonDevice() {
-        if (android.os.Build.MANUFACTURER.equals(AMAZON_DEVICE)) {
-            return true;
-        }
-        return false;
     }
 
 }

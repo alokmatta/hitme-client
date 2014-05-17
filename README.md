@@ -1,56 +1,84 @@
-Ionic App Base
-=====================
+# PhoneGap NFC Reader Demo
 
-A starting project for Ionic that optionally supports
-using custom SCSS.
+Simple web app that reads an NDEF Message from a NFC tag. 
 
-## Using this project
+The application will read NDEF tags when running.
 
-We recommend using the `ionic` utility to create new Ionic projects that are based on this project but use a ready-made starter template.
+The Android version will open the application when a tag with a Mime Media Record of type "text/pg" is scanned. On BlackBerry 10, the application will open when any NFC tag is scanned.
 
-For example, to start a new Ionic project with the default tabs interface, make sure the `ionic` utility is installed:
+## Supported Platforms
+ 
+ * [Android](#android)
+ * [Windows Phone 8](#windows-phone-8)
+ * [BlackBerry 10](#blackberry-10)
 
-```bash
-$ sudo npm install -g ionic
-```
+See the BlackBerry7 tag for the last version to support BlackBerry 7
 
-Then run:
+### Cordova CLI
 
-```bash
-$ sudo npm install -g ionic
-$ ionic start myProject tabs
-```
+Cordova 3.1 or greater is required. User npm to install Cordova. npm is part of [nodejs](http://nodejs.org).
 
-More info on this can be found on the Ionic [Getting Started](http://ionicframework.com/getting-started) page.
+    $ npm install cordova -g
+ 
+## Plugins 
 
-## Installation
+* [Device](http://docs.phonegap.com/en/3.1.0/cordova_device_device.md.html#Device) plugin (included in project)
+* [Notification](http://docs.phonegap.com/en/3.1.0/cordova_notification_notification.md.html#Notification) vibration plugin (included in project)
+* [phonegap-nfc](https://github.com/chariotsolutions/phonegap-nfc) plugin (included in project)
+ 
+## Android
 
-While we recommend using the `ionic` utility to create new Ionic projects, you can use this repo as a barebones starting point to your next Ionic app.
+### Requires 
 
-To use this project as is, first clone the repo from GitHub, then run:
+* Android Phone with NFC
+* [Android SDK](http://developer.android.com/sdk/index.html)
+* Cordova CLI
 
-```bash
-$ cd ionic-app-base
-$ sudo npm install -g cordova ionic gulp
-$ npm install
-$ gulp init
-```
+### Running
 
-## Using Sass (optional)
+	$ cordova run android
 
-This project makes it easy to use Sass (the SCSS syntax) in your projects. This enables you to override styles from Ionic, and benefit from
-Sass's great features.
+## Windows Phone 8
 
-Just update the `./scss/ionic.app.scss` file, and run `gulp` or `gulp watch` to rebuild the CSS files for Ionic.
+### Requires 
 
-Note: if you choose to use the Sass method, make sure to remove the included `ionic.css` file in `index.html`, and then uncomment
-the include to your `ionic.app.css` file which now contains all your Sass code and Ionic itself:
+* Windows Phone 8 with NFC 
+* [Windows Phone 8 SDK](http://dev.windowsphone.com/en-us/downloadsdk)
+* Visual Studio 2012
 
-```html
-<!-- IF using Sass (run gulp sass first), then remove the CSS include above
-<link href="css/ionic.app.css" rel="stylesheet">
--->
-```
-## Issues
-Issues have been disabled on this repo, if you do find an issue or have a question consider posting it on the [Ionic Forum](http://forum.ionicframework.com/).  Or else if there is truly an error, follow our guidelines for [submitting an issue](http://ionicframework.com/contribute/#issues) to the main Ionic repository. On the other hand, pull requests are welcome here!
+### Building
 
+Build and deploy with Visual Studio.
+
+This code was test on a Nokia Lumia 825.	
+
+### WP8 Problems
+
+Cordova CLI 3.1.0-0.2.0 is broken (or misconfigured) and won't deploy the plugins, use Visual Studio to deploy.
+
+Windows Phone NFC support is sketchy. Windows wants to grab and handle all NFC tags before the app does. This means that you'll get prompted by Windows to open URIs or get error messages for tags that Windows can't handle like Mime Media Tags. Dismiss the errors and you should be able to see the data in phonegap-nfc-reader. It's not ideal. Microsoft says they know about this. Maybe it will be fixed in Windows Phone 8.1?
+
+## BlackBerry 10
+
+### Requires 
+
+* BlackBerry 10 device with NFC 
+* [BlackBerry Native SDK](http://developer.blackberry.com/native/download/)
+* Cordova CLI
+* [com.blackberry.invoke](http://plugins.cordova.io/#/com.blackberry.invoke) plugin (included in project)
+
+### Running
+
+See the PhoneGap [BlackBerry 10 Platform Guide](http://docs.phonegap.com/en/3.1.0/guide_platforms_blackberry10_index.md.html#BlackBerry%2010%20Platform%20Guide) if you need help getting your environment configured.
+
+	$ cordova run blackberry10 --devicepass 123456
+	
+This code was test on a BlackBerry Z10.
+
+### BlackBerry 10 Problems
+
+Cordova CLI 3.1.0-0.2.0 has a problem with the engines tag in plugin.xml. If you want to install this in your own project, you may need to delete the engines section from plugin.xml before installing until a newer version of Cordova is released.
+
+## PhoneGap NFC
+
+See [phonegap-nfc](https://github.com/chariotsolutions/phonegap-nfc) for more info
