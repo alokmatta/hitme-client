@@ -128,15 +128,23 @@ var app = {
           else { return plural; }
         });     
     }
-
-//    tellFriends: function(){
-//        alert("friend told");
-//    }
 };
 
 function tellFriends(){
     alert("friend told");
-}
+};
+
+function txtFriends(){
+    alert("txt not implemented yet.");
+};
+
+function buyOnPayPal(){
+    alert("pay pal not implemented yet.");
+};
+
+function addToWishList(){
+    alert("wishlist not implemented yet.");
+};
 
 // ideally some form of this can move to phonegap-nfc util
 function decodePayload(record) {

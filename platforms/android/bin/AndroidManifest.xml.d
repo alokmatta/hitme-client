@@ -1,2 +1,2 @@
-/Users/richardflint/Development/hitMe/sandbox/phonegap-nfc-reader/platforms/android/bin/AndroidManifest.xml : \
-/Users/richardflint/Development/hitMe/sandbox/phonegap-nfc-reader/platforms/android/AndroidManifest.xml \
+/Users/kaushikchaubal/Work/hit-me/hitme-client/platforms/android/bin/AndroidManifest.xml : \
+/Users/kaushikchaubal/Work/hit-me/hitme-client/platforms/android/AndroidManifest.xml \
