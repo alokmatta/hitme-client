@@ -30,7 +30,7 @@
 	// make an associative array of server admins. Feel free to change/add your 
 	// own phone number and name here.
 	$people = array(
-		"+447943511601" => "Paul",
+		"+447412924515" => "Kaushik",
 		"+447814737977" => "Alok",
 		);
 
