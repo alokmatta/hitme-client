@@ -38,7 +38,7 @@
 	// $name is the user's name
 	foreach ($people as $to => $name) {
 		// Send a new outgoing SMS */
-		$body = "Bad news $name, the server is down and it needs your help";
+		$body = "Richard found an amazing tShirt for himself using HitMe!!!";
 		$client->account->sms_messages->create($from, $to, $body);
 		echo "Sent message to $name";
 	}
